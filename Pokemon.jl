@@ -21,7 +21,7 @@ const super_effective = 2
 #default if not defined = normally_effective (most cases) 
 eff(atk::AbstractType, def::AbstractType) = normally_effective
 
-#general case in which self aginst self = not_very_effective (probably there is a way to generalize this)
+#general case in which self aginst self = not_very_effective
 eff(atk::T, def::T) where T<:AbstractType = not_very_effective
 
 #excpection for Normal, Fighting, Ground
