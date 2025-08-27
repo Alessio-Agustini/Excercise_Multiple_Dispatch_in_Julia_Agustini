@@ -102,7 +102,6 @@ eff(Normal(), Normal())
 eff(Fire(), Electric())
 eff(Electric(), Ground())
 
-
 eff_string(Fighting(), Normal())
 eff_string(Normal(), Water())
 eff_string(Water(), Water())
