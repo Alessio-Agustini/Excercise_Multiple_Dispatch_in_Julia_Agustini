@@ -20,7 +20,6 @@ effectivity_matrix = [ 1 1 1 1 1 1 1 1 1;
   Ground
 end
 
-
 function eff(atk::PokeType, def::PokeType)
     effectivity = effectivity_matrix[Int(atk), Int(def)]
     if effectivity == 1
@@ -41,3 +40,4 @@ attack(Normal, Normal)
 attack(Fire, Water)
 attack(Electric, Ground)
 attack(Ice, Grass)
+
