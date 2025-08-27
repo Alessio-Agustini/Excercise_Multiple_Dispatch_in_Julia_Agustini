@@ -21,8 +21,8 @@ const super_effective = 2
 #default if not defined = normally_effective (most cases) 
 eff(atk::AbstractType, def::AbstractType) = normally_effective
 
-#general case in which self aginst self = not_very_effective (probably there is a way to generalize this)
-eff(atk::AbstractType, def::AbstractType) where AbstractType<:AbstractType = not_very_effective
+#general case in which self aginst self = not_very_effective
+eff(atk::T, def::T) where T<:AbstractType = not_very_effective
 
 #excpection for Normal, Fighting, Ground
 eff(atk::Normal, def::Normal) = normally_effective
@@ -73,25 +73,24 @@ eff(atk::Poison, def::Ground) = not_very_effective
 eff(atk::Ground, def::Fire) = super_effective
 eff(atk::Ground, def::Electric) = super_effective
 eff(atk::Ground, def::Poison) = super_effective
-eff(atk::Poison, def::Grass) = not_very_effective
 
 #defining eff_string
 function eff_string(atk::AbstractType, def::AbstractType)
-    if eff(atk, def) == 2
-        return println("The attack was super effective")
-    elseif eff(atk, def) == 1
-        return println("The attack was normally effective")
+    if eff(atk, def) == super_effective
+        return "The attack was super effective"
+    elseif eff(atk, def) == normally_effective
+        return "The attack was normally effective"
     else
-        return println("The attack was not effective...")
-end
+        return "The attack was not effective..."
+    end
 end
 
 #define Attack function
-function Attack(atk::AbstractType, def::AbstractType)
-println("The type of the attacking pókemon is: $(typeof(atk))")
-println("The type of the defending pókemon is: $(typeof(def))")
-println("Due to the types of the pokemon the attacking pokemon would deal the amount of damage multiplied by $(eff(atk, def))")
-println(eff_string(atk, def))
+function attack(atk::AbstractType, def::AbstractType)
+    println("The type of the attacking pókemon is: $(typeof(atk))")
+    println("The type of the defending pókemon is: $(typeof(def))")
+    println("Due to the types of the pokemon the attacking pokemon would deal the amount of damage multiplied by $(eff(atk, def))")
+    println(eff_string(atk, def))
 end
 
 
@@ -111,10 +110,10 @@ eff_string(Normal(), Normal())
 eff_string(Fire(), Electric())
 eff_string(Electric(), Ground())
 
-Attack(Fighting(), Normal())
-Attack(Normal(), Water())
-Attack(Water(), Water())
-Attack(Normal(), Normal())
-Attack(Fire(), Electric())
-Attack(Electric(), Ground())
+attack(Fighting(), Normal())
+attack(Normal(), Water())
+attack(Water(), Water())
+attack(Normal(), Normal())
+attack(Fire(), Electric())
+attack(Electric(), Ground())
 
