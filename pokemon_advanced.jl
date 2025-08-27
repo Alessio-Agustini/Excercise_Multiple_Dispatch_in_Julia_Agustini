@@ -157,8 +157,8 @@ end
 
 #define Attack function
 function Attack(atk::AbstractType, def::AbstractType)
-println("They type of the attacking pókemon is: $(typeof(atk))")
-println("They type of the defending pókemon is: $(typeof(def))")
+println("The type of the attacking pókemon is: $(typeof(atk))")
+println("The type of the defending pókemon is: $(typeof(def))")
 println("Due to the types of the pokemon the attacking pokemon would deal the amount of damage multiplied by $(eff(atk, def))")
 println(eff_string(atk, def))
 end
